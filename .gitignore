@@ -44,3 +44,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Lumen
+/vendor
+/public
+Homestead.json
+Homestead.yaml
+.env

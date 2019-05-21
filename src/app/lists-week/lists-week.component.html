@@ -1,0 +1,22 @@
+<parts-navigation [left]="true" (click)="initialize(prev)"></parts-navigation>
+<parts-navigation [right]="true" (click)="initialize(next)"></parts-navigation>
+
+<div *ngFor="let label of ['日', '月', '火', '水', '木', '金', '土']; index as i">
+  <div class="card m-2"
+       [routerLink]="[current | date:'y-M-d']"
+       [ngClass]="'border-'+color"
+       *ngIf="nextDay(i) as current">
+    <div class="card-header" [ngClass]="'bg-'+color">
+      {{ current | date:'y年M月d日' }}
+      <span class="badge badge-success float-right">{{ label }}</span>
+    </div>
+    <div class="card-body">
+      <div *ngFor="let member of members">
+        {{ member.name }}
+        <app-rank class="text-warning float-right" [rank]="diaries.items[day][member.id]" *ngIf="diaries.items && diaries.items[day]"></app-rank>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+

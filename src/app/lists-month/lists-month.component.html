@@ -1,0 +1,34 @@
+<parts-navigation [left]="true" (click)="initialize(prev.getFullYear(), prev.getMonth())"></parts-navigation>
+<parts-navigation [right]="true" (click)="initialize(next.getFullYear(), next.getMonth())"></parts-navigation>
+
+<div class="row">
+  <h5 class="col text-center">{{ current | date:'y年M月' }}</h5>
+</div>
+<div class="row">
+  <div class="col text-center"
+       [class.text-danger]="first"
+       [class.text-info]="last"
+       *ngFor="let label of ['日', '月', '火', '水', '木', '金', '土']; first as first; last as last">
+    {{ label }}
+  </div>
+</div>
+
+<div class="row" *ngFor="let week of weeks; index as i">
+  <div class="col" *ngFor="let label of [1, 2, 3, 4, 5, 6, 7]">
+    <div *ngIf="getDay(i, label) as day">
+      <div class="card"
+           [routerLink]="[current | date:'y-M-' + day]"
+           [ngClass]="'border-'+color"
+           *ngIf="1 <= day && day <= limit">
+        <div class="card-header" [ngClass]="'bg-'+color">{{ day }}日</div>
+        <div class="card-body">
+          <div *ngFor="let member of members">
+            {{ member.name }}
+            <app-rank class="text-warning float-right" [rank]="diaries.items[day][member.id]" *ngIf="diaries.items && diaries.items[day]"></app-rank>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

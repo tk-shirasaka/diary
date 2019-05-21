@@ -1,0 +1,13 @@
+<parts-navigation [left]="true" [routerLink]="['/', prev | date:'y-M-d']"></parts-navigation>
+<parts-navigation [right]="true" [routerLink]="['/', next | date:'y-M-d']"></parts-navigation>
+
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item active">{{ curr | date:'y年M月d日' }}</li>
+  </ol>
+</nav>
+
+<div *ngFor="let member of members">
+  <app-detail [member]="member" [diary]="find(member.id)"></app-detail>
+</div>

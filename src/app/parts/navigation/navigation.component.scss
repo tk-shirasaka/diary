@@ -1,0 +1,21 @@
+i {
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  z-index: 100;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  background: #79e1c0;
+  border-radius: 100%;
+}
+
+.fa-chevron-left {
+  left: 1em;
+}
+
+.fa-chevron-right {
+  right: 1em;
+}
+

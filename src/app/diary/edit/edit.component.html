@@ -1,0 +1,26 @@
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="../..">{{ date }}</a></li>
+    <li class="breadcrumb-item active">{{ member.name }}</li>
+  </ol>
+</nav>
+
+<form>
+  <div class="btn-group btn-group-toggle">
+    <label class="btn btn-outline-warning" [class.active]="diary.rank == 1">
+      <input type="radio" name="rank" value="1" [(ngModel)]="diary.rank">
+      <app-rank [rank]="1"></app-rank>
+    </label>
+    <label class="btn btn-outline-warning" [class.active]="diary.rank == 2">
+      <input type="radio" name="rank" value="2" [(ngModel)]="diary.rank">
+      <app-rank [rank]="2"></app-rank>
+    </label>
+    <label class="btn btn-outline-warning" [class.active]="diary.rank == 3">
+      <input type="radio" name="rank" value="3" [(ngModel)]="diary.rank">
+      <app-rank [rank]="3"></app-rank>
+    </label>
+  </div>
+  <textarea class="form-control mt-3" name="content" rows="15" [(ngModel)]="diary.content"></textarea>
+  <button class="btn btn-primary mt-3" [disabled]="!(diary.rank && diary.content)" (click)="save()">保存</button>
+</form>
