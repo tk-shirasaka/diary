@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ExampleMiddleware
+class SecureMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,10 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if (env('HTTP_X_FORWARDED_PROTO') === 'https' || env('APP_ENV') === 'local') {
+            return $next($request);
+        } else {
+            return redirect()->to(preg_replace('/^http/', 'https', $request->fullUrl()));
+        }
     }
 }
